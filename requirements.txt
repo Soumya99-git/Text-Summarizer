@@ -1,0 +1,7 @@
+spacy==2.3.5
+SpeechRecognition==3.8.1
+moviepy==1.0.3
+pytube==10.4.1
+pymongo==3.11.2
+Flask==1.1.2
+pickle5

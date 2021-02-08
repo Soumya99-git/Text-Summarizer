@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins');
+
+/* BASIC */
+
+html {
+  background-image: url('{{url_for("static",filename="home1.jpg")}}') ;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+}
+
+a {
+  color: #92badd;
+  display:inline-block;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+h1 {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display:inline-block;
+  margin: 40px 8px 10px 8px; 
+  color: #cccccccc;
+}
+
+p {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: normal;
+  display:inline-block;
+  margin: 40px 8px 10px 8px; 
+  color: #cccccccc;
+}
+
+
+h2 {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display:inline-block;
+  margin: 40px 8px 10px 8px; 
+  color: #cccccc;
+}
+
+h3 {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display:inline-block;
+  margin: 40px 8px 10px 8px; 
+  color: #e07b7b;
+}
+
+
+
+/* STRUCTURE */
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column; 
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+}
+
+#formContent {
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  background: #fff;
+  padding: 30px;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  padding: 0px;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+#formFooter {
+  background-color: #f6f6f6;
+  border-top: 1px solid #dce8f1;
+  padding: 25px;
+  text-align: center;
+  -webkit-border-radius: 0 0 10px 10px;
+  border-radius: 0 0 10px 10px;
+}
+
+
+
+/* TABS */
+
+
+
+
+/* FORM TYPOGRAPHY*/
+
+input[type=button], input[type=submit], input[type=reset]  {
+  background-color: #56baed;
+  border: none;
+  color: white;
+  padding: 15px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px 20px 40px 20px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+  background-color: #e73939;
+}
+
+input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+  -moz-transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -o-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
+}
+
+input[type=text] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+input[type=file] {
+  background-color: #020202;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 5px;
+  width: 70%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+input[type=text]:focus {
+  background-color: #fff;
+  border-bottom: 2px solid #5fbae9;
+}
+
+
+input[type=file]:focus {
+  background-color: #fff;
+  border-bottom: 2px solid #5fbae9;
+}
+input[type=text]:placeholder {
+  color: #cccccc;
+}
+ul {
+  list-style-type: none;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #162470;
+  border-radius: 30px;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  font-family: "Poppins", sans-serif;
+  color: rgb(61, 199, 187);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: double;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: rgba(228, 226, 210, 0.13);
+}
+
+</style>
+<ul>
+    <li><a href='{{url_for("home")}}'>Home</a></li>
+    <li><a href='{{url_for("feed")}}'>Feedback portal</a></li>
+    <li style= "float:right"><a class="active" href='{{url_for("logout")}}'>Logout</a></li></ul>
+
+</ul>
+<body>
+    <br>
+    <title>Home</title>
+    <h1>Welcome {{uname}}</h1>
+    <div align=center>
+      {% with messages = get_flashed_messages() %}  
+              {% if messages %}  
+                    {% for message in messages %}  
+                         <p>{{ message }}</p>  
+                    {% endfor %}  
+              {% endif %}  
+              {% endwith %} 
+              <br><br><br><br>
+      
+    </div>
+    <div style="width: 100%; display: table;">
+      <div style="display: table-row">
+        <div style="display: table-cell; padding-left: 40px;">
+          
+        <div class="wrapper" style="width: 100%;">
+          <div id="formContent" style="background-color: #162470;">
+              <h2 class="active"> Text Summarizer</h2><br><hr>
+                
+          
+              <form action='{{url_for("text")}}' method="POST" enctype="multipart/form-data">
+                <h2><label >Text file(.txt)</label></h2><br><br>
+                <input type="file" name="f" id="f"><br><br>
+                <input type="submit" value="Summarize">
+            
+              </form>
+            </form>
+            </div>
+          </div>
+        </div>
+          <div style="display: table-cell; padding-left: 10px; ">
+          
+            <div class="wrapper">
+                <div id="formContent" style="background-color: #162470;">
+                  <h2 class="active">Audio or Video to Text Summarization</h2><br><hr>
+                    
+              
+                  <form action='{{url_for("vid_aud")}}' method="POST" enctype="multipart/form-data">
+                    <h2><label>Audio or Video file(wav or mp3 or mp4)</label><h2>
+                    <input type="file" name="f" id="f" ><br>
+                    <input type="submit" value="Convert">
+            
+                  </form>
+                </form>
+                
+                </div>
+              </div>
+    </div>
+  </div></div>
+      </div>
+      
+  </div>
+     
+    
+    
+</body>
+</div>
