@@ -5,7 +5,7 @@
 /* BASIC */
 
 html {
-  background-color: white;
+  background-image: url('{{url_for("static",filename="home1.jpg")}}') ;
 }
 
 body {
@@ -22,8 +22,8 @@ a {
 
 h1 {
   text-align: center;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 30px;
+  font-weight: 1200;
   text-transform: uppercase;
   display:inline-block;
   margin: 40px 8px 10px 8px; 
@@ -36,7 +36,7 @@ p {
   text-transform: normal;
   display:inline-block;
   margin: 40px 8px 10px 8px; 
-  color: #000000cc;
+  color: #cccccccc;
 }
 
 
@@ -47,7 +47,7 @@ h2 {
   text-transform: uppercase;
   display:inline-block;
   margin: 40px 8px 10px 8px; 
-  color: #000000;
+  color: #cccccc;
 }
 
 h3 {
@@ -129,7 +129,7 @@ input[type=button], input[type=submit], input[type=reset]  {
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: #39ace7;
+  background-color: #e73939;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -160,12 +160,36 @@ input[type=text] {
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
 }
+input[type=file] {
+  background-color: #020202;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 5px;
+  width: 70%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
 
 input[type=text]:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
 
+
+input[type=file]:focus {
+  background-color: #fff;
+  border-bottom: 2px solid #5fbae9;
+}
 input[type=text]:placeholder {
   color: #cccccc;
 }
@@ -202,81 +226,45 @@ li a:hover {
 </style>
 <ul>
     <li><a href='{{url_for("home")}}'>Home</a></li>
-    <li><a href='{{url_for("vid_aud_feed")}}'>Audio Feedback</a></li>
     <li><a href='{{url_for("feed")}}'>Feedback portal</a></li>
-    
+    <li><a href='{{url_for("charts")}}'>Analytics</a></li>
+    <li style= "float:right"><a class="active" href='{{url_for("logout")}}'>Logout</a></li></ul>
+
 </ul>
-<html>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart)
-      var pos = parseInt('{{ d.positive }}')
-      var neg  = parseInt('{{ d.negative }}')
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-        ['Feed_Polarity', 'Number'],
-          ['Positive', pos],
-          ['Negative', neg]
+<body>
+    <br>
+    <title>Home</title>
+    <div align=center><h1>Enterprise AI</h1><br><br><br>
+    </div>
+    <div style="width: 100%; display: table;">
+        <div style="display: table-row">
+          <div style="display: table-cell; background-color: rgb(67, 88, 148); border-radius: 30px;width: 40%;">
+           <h2 style="color:black;font-size: 18px;">Text Summarization</h2><br>
+           <h2 style="color:black;font-size: 16px;">Use Cases-</h2><br>
+           
+           <p>
+               ->A Text File input for Text Summarization<br>
+               ->An Audio file as input which is transcribed into Text for Text Summarization<br>
+           </p>
+           <br>
+           <br>
+           </div>
 
-        ]);
-
-        var options = {
-          title: 'Total number of Feedbacks:  {{d.total}}'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-    </script>
-  </head>
-  <body>
-      <div id="piechart" name="piechart" style="width: 2100px; height: 500px;"></div>
-      <div style="display: table-row">
-          <div style=" display: table-cell;background-color: #146bb3;width:50%; border-radius: 30px; padding-right: 10px;">
-            <h1>Text Summarization</h1><br>
-            <p>What is the purpose:<br> <br>
-              We take a text file as input(uptill now only .txt files are working)<br>
-              Read text from it. Then we split the text according to the sentences<br> 
-              Calculate the importance of every sentence by analysing which sentence has more of the important words in it.<br> 
-              We then select 30% of the most important text from it.By this we summarize the contents of the text file.<br> 
-              A new text file is downloaded at the end</p>
-            <br>
-            <br>         
-          </div>
-          <div style="display: table-cell; padding-left: 10px;width: 40%; background-color: rgb(211, 94, 117);border-radius: 30px;">
-            <h1>Audio or Video to Text Summarization</h1><br>
-            <p>What is the purpose:<br><br>
-              First an Audio or Video file is given as input.<br>
-              If video file is uploaded it is then changed into audio using moviepy library of python.<br>
-              Audio file is given as input to the Google Recognizer api which transcribes audio file to text.<br>
-              Text file is then given as input to Text Summarization Algorithm which summarizes the Text.<br>
-              A new Text file with the summarized content is downloaded</p>
+           <div style="display: table-cell; padding-left: 10px;background-color: rgb(161, 87, 103); border-radius: 30px; width: 40%;">
+            <h2 style="color:black;font-size: 18px;">Feedback Analysis</h2><br>
+            <h2 style="color:black;font-size: 16px;">Use Cases-</h2><br>
+            <p>
+              ->Classifying a given Feedback as Negative or Positive<br>
+              ->For User giving a Feedback on the fore mentioned Summarization Techniques<br>
+              ->For Adminsitrator Text extraction from Audio or Video to Feedback Analysis<br>
+              
             </p>
-          </div>
-      </div>
-      <br><br>
-      <div style="display: table-row; padding-top: 40px;">
-        <div style=" display: table-cell;background-color: rgb(211, 94, 117);width: 65%; border-radius: 30px; padding-right: 10px;">
-          <h1>Feedback Analysis</h1><br>
-          <p>What is the purpose:<br> <br>
-            A Feedback is given by the User<br>
-            A Machine Learning Model is trained on Hotel Review dataset and saved with pickle<br> 
-            The Polarity of the Feedback is given according to the Model trained<br> 
-            For Admin the Audio is changed to Text to and feed into the model for Feedback Analysis<br> 
-            All previous Feedbacks can be viewed by the Admin with their respective polarity</p>
-          <br>
-          <br>         
-        </div>
-        <div style="display: table-cell; padding-left: 10px; background-color:burlywood;border-radius: 30px;">
-          <h1>Dataset for Model Preparation</h1><br>
-          <p>
-            <img src='{{url_for("static",filename="feed.jpg")}}' style="border-radius:10px;">
-          </p>
+            <br>
+           </div>
         </div>
     </div>
-  </body>
-</html>
-
+    <br><br>
+    <div align=center><a href="{{url_for('signin')}}" style="color: #020202; background-color: #cccccc; border-radius: 30px;">Sign In to Use</a></div>
+    
+    
+</body>

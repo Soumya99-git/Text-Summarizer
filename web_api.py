@@ -24,7 +24,7 @@ def home():
             return render_template("home_adm.html")
         return render_template("home.html")
     else:
-        return render_template("signin.html")
+        return render_template("home!sign.html")
 
 @app.route("/signin",methods=["GET","POST"])
 def signin():
@@ -118,11 +118,15 @@ def vid_aud():
                 flash("Give some input file")
                 return render_template("home.html")
             upload_file = request.files["f"]
-            file_name = upload_file.filename.replace(" ","")
-            upload_file.save(os.path.join(app.config['UPLOAD_FOLDER'],file_name))
-            print(file_name)
-            new_path = videotoaudio.spliter_audio_text(file_name,1)
-            return send_file(new_path,as_attachment=True)
+            if upload_file.filename[-3:0]=="mp3": 
+                file_name = upload_file.filename.replace(" ","")
+                upload_file.save(os.path.join(app.config['UPLOAD_FOLDER'],file_name))
+                print(file_name)
+                new_path = videotoaudio.spliter_audio_text(file_name,1)
+                return send_file(new_path,as_attachment=True)
+            else:
+                flash("mp3 or wav or mp4 files allowed")
+                return render_template("home.html")
         else:
             return render_template("home.html",uname=session["uname"])
     else:
@@ -169,12 +173,15 @@ def text():
                 flash("Give some input file")
                 return render_template("home.html",uname=session["uname"])
             upload_file = request.files["f"]
-            file_name = upload_file.filename.replace(" ","_")
-            upload_file.save(os.path.join(app.config['UPLOAD_FOLDER'],file_name))
-            
-            path = text_summariztion.summarization(file_name)
-            n_path = os.path.join(app.config['UPLOAD_FOLDER'],path)
-            return send_file(n_path,as_attachment=True)
+            if upload_file.filename[-3:] == "txt":
+                file_name = upload_file.filename.replace(" ","_")
+                upload_file.save(os.path.join(app.config['UPLOAD_FOLDER'],file_name))
+                path = text_summariztion.summarization(file_name)
+                n_path = os.path.join(app.config['UPLOAD_FOLDER'],path)
+                return send_file(n_path,as_attachment=True)
+            else:
+                flash("Only text file for Text Summarizer")
+                return render_template("home.html")
         else:
             return render_template("home.html",uname=session["uname"])
     else:
@@ -185,11 +192,12 @@ def text():
 @app.route("/logout",methods=["GET"])
 def logout():
     session.pop("uname",None)
-    return render_template("Ack.html")
+    return render_template("home!sign.html")
 
 @app.route("/charts")
 def charts():
     d={}
+    d["total"] = len(list(coll.find()))
     d["positive"] = len(list(coll.find({"polarity":"positive"})))
     d["negative"] = len(list(coll.find({"polarity":"negative"})))
     return render_template("chart.html",d = d)

@@ -227,6 +227,7 @@ li a:hover {
 <ul>
     <li><a href='{{url_for("home")}}'>Home</a></li>
     <li><a href='{{url_for("feed")}}'>Feedback portal</a></li>
+    <li><a href='{{url_for("charts")}}'>Analytics</a></li>
     <li style= "float:right"><a class="active" href='{{url_for("logout")}}'>Logout</a></li></ul>
 
 </ul>
@@ -238,7 +239,7 @@ li a:hover {
       {% with messages = get_flashed_messages() %}  
               {% if messages %}  
                     {% for message in messages %}  
-                         <p>{{ message }}</p>  
+                         <p style="color: #020202;">{{ message }}</p>  
                     {% endfor %}  
               {% endif %}  
               {% endwith %} 

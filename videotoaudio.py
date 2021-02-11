@@ -1,6 +1,5 @@
 import speech_recognition as sr
 import moviepy.editor as mp
-from pytube import YouTube
 import os
 import subprocess
 from multiprocessing import Process
@@ -23,20 +22,7 @@ def mp3_to_wav(fname):
 
     return fname
 
-def you_to_video(url):
-    YouTube(url).streams.get_by_resolution("720p").download()
-    
-def you_to_audio(url):
-    os.chdir(r"c:\Users\Soumya Chatterjee\Desktop\INFRAMIND\PROJECT\uploads")
-    for i in os.listdir():
-        os.remove(i)
-    
-    mp4 = YouTube(url).streams.get_highest_resolution().download()
-    mp3 = mp4.split(".mp4",1)[0] +".mp3"
-    video_to_audio(mp4,mp3)
-    os.remove(mp4)
-    return os.path.join(r"c:\Users\Soumya Chatterjee\Desktop\INFRAMIND\PROJECT\uploads",mp3)    
-    
+        
 def spliter_audio_text(fname,flag):            #if flag = 1 then to text summarization from audio else if flag = 0 then audio or video to feedback analysis
 
     os.chdir(r"C:\Users\Soumya Chatterjee\Desktop\INFRAMIND\PROJECT\uploads")
@@ -97,9 +83,4 @@ def spliter_audio_text(fname,flag):            #if flag = 1 then to text summari
         for i in txt:
             string+=i
         return feedback_analysis.feedback(string),string
-
-    
-
-#if __name__=="__main__":
-#    print(spliter_audio_text("WIN_20210128_20_37_33_Pro.mp4",0))
     

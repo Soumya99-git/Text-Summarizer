@@ -228,6 +228,7 @@ li a:hover {
 <ul>
     <li><a href='{{url_for("home")}}'>Home</a></li>
     <li><a href='{{url_for("feed")}}'>Feedback portal</a></li>
+    <li><a href='{{url_for("charts")}}'>Analytics</a></li>
     <li style= "float:right"><a class="active" href='{{url_for("logout")}}'>Logout</a></li></ul>
 
 </ul>
@@ -235,12 +236,12 @@ li a:hover {
     <br>
     <title>Home</title>
     <h1>Welcome Administrator</h1><br>
-    <h2 style="padding-left: 30px; color: #282e50;">To view Older Feedbacks go to Feedback Portal</h2>
+    <h2 style="padding-left: 30px; color: #444655;">To view Older Feedbacks go to Feedback Portal</h2>
     <div align=center>
       {% with messages = get_flashed_messages() %}  
               {% if messages %}  
                     {% for message in messages %}  
-                         <p>{{ message }}</p>  
+                         <p style="color:black;">{{ message }}</p>  
                     {% endfor %}  
               {% endif %}  
               {% endwith %} 
@@ -253,8 +254,8 @@ li a:hover {
           <div style="display: table-cell; padding-left: 10px; ">
           
             <div class="wrapper">
-                <div id="formContent" style="background-color: #d6dbf3;">
-                  <h2 class="active" style="color: #020202;">Audio or Video Feedback Analysis</h2><br><hr>
+                <div id="formContent" style="background-color: #1b2246;">
+                  <h2 class="active" style="color: #32c7ae;">Audio or Video Feedback Analysis</h2><br><hr>
                     
               
                   <form action='{{url_for("vid_aud_feed")}}' method="POST" enctype="multipart/form-data">
