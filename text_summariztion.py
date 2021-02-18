@@ -1,9 +1,7 @@
 import spacy
 from spacy.lang.en.stop_words import STOP_WORDS
 from string import punctuation
-from heapq import nlargest
 import os
-import re
 
 
 
@@ -61,9 +59,22 @@ def summarization(path):
     length_sent = int(len(sent_token)*0.3)
 
     summary = [sent_token[0]]
-    summary_imp = nlargest(length_sent,sent_score,sent_score.get)
-    summary.extend(summary_imp)
+    sorted_sent_score = []
+    count = 1
 
+    for i in sorted(sent_score.values(),reverse=True):
+        if count<=length_sent:
+            sorted_sent_score.append(i)
+            count+=1
+    
+    summary_imp = []
+    for i in sent_score.keys():
+        if sent_score[i] in sorted_sent_score:
+            summary_imp.append(i)
+    
+    for i in summary_imp:
+        if i not in summary:
+            summary.append(i)
 
     final_summary = []
 
@@ -79,5 +90,3 @@ def summarization(path):
     fp.write(summary_disp)
     
     return new_path
-
-    

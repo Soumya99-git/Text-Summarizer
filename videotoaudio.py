@@ -84,3 +84,5 @@ def spliter_audio_text(fname,flag):            #if flag = 1 then to text summari
             string+=i
         return feedback_analysis.feedback(string),string
     
+#if __name__=="__main__":
+#    spliter_audio_text("WIN_20210128_21_38_34_Pro.mp4",0)
